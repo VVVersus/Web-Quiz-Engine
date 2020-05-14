@@ -42,13 +42,6 @@ files:
 
     }
   learner_created: false
-- name: src/resources/application.properties
-  visible: true
-  text: |
-    server.port=8889
-    management.endpoints.web.exposure.include=*
-    management.endpoint.shutdown.enabled=true
-  learner_created: false
 - name: test/tests/WebQuizEngineTest.java
   visible: false
   text: |
@@ -430,12 +423,13 @@ files:
         }
     }
   learner_created: false
-- name: src/engine/QuizController.java
+- name: src/resources/application.properties
   visible: true
-  learner_created: true
-- name: src/engine/QuizResult.java
-  visible: true
-  learner_created: true
+  text: |
+    server.port=8889
+    management.endpoints.web.exposure.include=*
+    management.endpoint.shutdown.enabled=true
+  learner_created: false
 feedback_link: https://hyperskill.org/projects/91/stages/504/implement
 status: Solved
 record: 1

@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.WebQuizEngineTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-14T18:55:17" hostname="STI_Vice" time="23.708">
+  <properties/>
+  <testcase name="start" classname="tests.WebQuizEngineTest" time="23.708"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2020-05-14 21:55:17.944  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine on STI_Vice with PID 15960 (started by V_Iavorschi in D:\Projects\JAVA\Web Quiz Engine\Web Quiz Engine\task)
+2020-05-14 21:55:17.947  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
+2020-05-14 21:55:18.943  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-14 21:55:19.002  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51ms. Found 2 JPA repository interfaces.
+2020-05-14 21:55:19.375  INFO 15960 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-14 21:55:19.642  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2020-05-14 21:55:19.654  INFO 15960 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-14 21:55:19.654  INFO 15960 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-05-14 21:55:19.803  INFO 15960 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-14 21:55:19.803  INFO 15960 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1801 ms
+2020-05-14 21:55:19.957  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-14 21:55:20.141  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-14 21:55:20.150  INFO 15960 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../quizdb'
+2020-05-14 21:55:20.447  INFO 15960 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-14 21:55:20.531  INFO 15960 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.9.Final}
+2020-05-14 21:55:20.702  INFO 15960 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-14 21:55:20.812  INFO 15960 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: create table question (id bigint not null, text varchar(255), title varchar(255), user_id bigint, primary key (id))
+Hibernate: create table question_answer (question_id bigint not null, answer integer)
+Hibernate: create table question_options (question_id bigint not null, options varchar(255))
+Hibernate: create table user (id bigint not null, active boolean not null, email varchar(255), password varchar(255) not null, primary key (id))
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: alter table question add constraint FK4ekrlbqiybwk8abhgclfjwnmc foreign key (user_id) references user
+Hibernate: alter table question_answer add constraint FKflwcda2rengsndju5f1deywok foreign key (question_id) references question
+Hibernate: alter table question_options add constraint FKjk4v42xhyfv4ca1yyhorsg5tv foreign key (question_id) references question
+2020-05-14 21:55:21.536  INFO 15960 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-14 21:55:21.544  INFO 15960 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:22.013  WARN 15960 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-14 21:55:22.191  INFO 15960 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e7718ce, org.springframework.security.web.context.SecurityContextPersistenceFilter@7c3db82d, org.springframework.security.web.header.HeaderWriterFilter@7d2ce61a, org.springframework.security.web.authentication.logout.LogoutFilter@23ea26b4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@77339b7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7d4fff67, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6268b46a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@368c1b1c, org.springframework.security.web.session.SessionManagementFilter@161ce41b, org.springframework.security.web.access.ExceptionTranslationFilter@68b6d27b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b3dfa53]
+2020-05-14 21:55:22.332  INFO 15960 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:22.620  INFO 15960 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-05-14 21:55:22.693  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2020-05-14 21:55:22.696  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 5.129 seconds (JVM running for 5.878)
+2020-05-14 21:55:23.055  INFO 15960 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 21:55:23.055  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-14 21:55:23.067  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into user (active, email, password, id) values (?, ?, ?, ?)
+?[1;31m
+Start test 2?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into user (active, email, password, id) values (?, ?, ?, ?)
+?[1;31m
+Start test 3?[0m
+2020-05-14 21:55:23.680  WARN 15960 --- [nio-8889-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> engine.Quiz.registerUser(engine.User): [Field error in object 'user' on field 'email': rejected value [google.com]; codes [Pattern.user.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@21cbec9d,^.+@.+?\..+$]; default message [must match "^.+@.+?\..+$"]] ]
+?[1;31m
+Start test 4?[0m
+2020-05-14 21:55:23.715  WARN 15960 --- [nio-8889-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> engine.Quiz.registerUser(engine.User): [Field error in object 'user' on field 'email': rejected value [well@googlecom]; codes [Pattern.user.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@21cbec9d,^.+@.+?\..+$]; default message [must match "^.+@.+?\..+$"]] ]
+?[1;31m
+Start test 5?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 6?[0m
+2020-05-14 21:55:23.736  WARN 15960 --- [nio-8889-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> engine.Quiz.registerUser(engine.User): [Field error in object 'user' on field 'password': rejected value [1234]; codes [Length.user.password,Length.password,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password],2147483647,5]; default message [length must be between 5 and 2147483647]] ]
+?[1;31m
+Start test 7?[0m
+2020-05-14 21:55:23.745  WARN 15960 --- [nio-8889-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> engine.Quiz.registerUser(engine.User): [Field error in object 'user' on field 'password': rejected value [123]; codes [Length.user.password,Length.password,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password],2147483647,5]; default message [length must be between 5 and 2147483647]] ]
+?[1;31m
+Start test 8?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+?[1;31m
+Start test 9?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+?[1;31m
+Start test 10?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 11?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 12?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 13?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 14?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 15?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 16?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 17?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 18?[0m
+?[1;31m
+Start test 19?[0m
+?[1;31m
+Start test 20?[0m
+?[1;31m
+Start test 21?[0m
+?[1;31m
+Start test 22?[0m
+?[1;31m
+Start test 23?[0m
+?[1;31m
+Start test 24?[0m
+?[1;31m
+Start test 25?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 26?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 27?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 28?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 29?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 30?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 31?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+?[1;31m
+Start test 32?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 33?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 34?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 35?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 36?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 37?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 38?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 39?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 40?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 41?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 42?[0m
+2020-05-14 21:55:26.159  INFO 15960 --- [       Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:26.164  INFO 15960 --- [       Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:26.172  INFO 15960 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-14 21:55:26.415  INFO 15960 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2020-05-14 21:55:26.498  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine on STI_Vice with PID 15960 (started by V_Iavorschi in D:\Projects\JAVA\Web Quiz Engine\Web Quiz Engine\task)
+2020-05-14 21:55:26.500  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
+2020-05-14 21:55:26.760  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-14 21:55:26.769  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8ms. Found 2 JPA repository interfaces.
+2020-05-14 21:55:26.829  INFO 15960 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-14 21:55:26.864  WARN 15960 --- [    Test worker] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2020-05-14 21:55:26.873  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2020-05-14 21:55:26.874  INFO 15960 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-14 21:55:26.874  INFO 15960 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-05-14 21:55:26.917  INFO 15960 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-14 21:55:26.917  INFO 15960 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 413 ms
+2020-05-14 21:55:26.958  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2020-05-14 21:55:26.968  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2020-05-14 21:55:26.969  INFO 15960 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../quizdb'
+2020-05-14 21:55:27.049  INFO 15960 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-14 21:55:27.055  INFO 15960 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-05-14 21:55:27.176  INFO 15960 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-14 21:55:27.176  INFO 15960 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:27.255  WARN 15960 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-14 21:55:27.283  INFO 15960 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7437c726, org.springframework.security.web.context.SecurityContextPersistenceFilter@342812a5, org.springframework.security.web.header.HeaderWriterFilter@3fbee881, org.springframework.security.web.authentication.logout.LogoutFilter@2fdd9e32, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@52925ba7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5f52a38e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17e0a205, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d6b73ce, org.springframework.security.web.session.SessionManagementFilter@236deaac, org.springframework.security.web.access.ExceptionTranslationFilter@60a17618, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4eff358c]
+2020-05-14 21:55:27.330  INFO 15960 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:27.437  INFO 15960 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-05-14 21:55:27.468  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2020-05-14 21:55:27.469  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 1.011 seconds (JVM running for 10.652)
+?[1;31m
+Start test 43?[0m
+2020-05-14 21:55:27.476  INFO 15960 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 21:55:27.477  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-14 21:55:27.480  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 44?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 45?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 46?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 47?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 48?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 49?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.118  WARN 15960 --- [nio-8889-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 4, column: 4]]
+?[1;31m
+Start test 50?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.200  WARN 15960 --- [nio-8889-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 5, column: 4]]
+?[1;31m
+Start test 51?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.282  WARN 15960 --- [nio-8889-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 4, column: 4]]
+?[1;31m
+Start test 52?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.362  WARN 15960 --- [io-8889-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 5, column: 4]]
+?[1;31m
+Start test 53?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.459  WARN 15960 --- [nio-8889-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public engine.Question engine.Quiz.addQuestion(engine.Question,engine.User): [Field error in object 'question' on field 'options': rejected value [null]; codes [NotNull.question.options,NotNull.options,NotNull.java.util.List,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [question.options,options]; arguments []; default message [options]]; default message [must not be null]] ]
+?[1;31m
+Start test 54?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.545  WARN 15960 --- [nio-8889-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 5, column: 4]]
+?[1;31m
+Start test 55?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+2020-05-14 21:55:28.625  WARN 15960 --- [nio-8889-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
+ at [Source: (PushbackInputStream); line: 5, column: 4]]
+?[1;31m
+Start test 56?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 57?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 58?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 59?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 60?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 61?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 62?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 63?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 64?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 65?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 66?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 67?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 68?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 69?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 70?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 71?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 72?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 73?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 74?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 75?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 76?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 77?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 78?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 79?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 80?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 81?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 82?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 83?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 84?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 85?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 86?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 87?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 88?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 89?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 90?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 91?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 92?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 93?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 94?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 95?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 96?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 97?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 98?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 99?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 100?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 101?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 102?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 103?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 104?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 105?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 106?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 107?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 108?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 109?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 110?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 111?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 112?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 113?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 114?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 115?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 116?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 117?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 118?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 119?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 120?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 121?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 122?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 123?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 124?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 125?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 126?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 127?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 128?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: call next value for hibernate_sequence
+Hibernate: insert into question (text, title, user_id, id) values (?, ?, ?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_answer (question_id, answer) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+Hibernate: insert into question_options (question_id, options) values (?, ?)
+?[1;31m
+Start test 129?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 130?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 131?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 132?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 133?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 134?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 135?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 136?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 137?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 138?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 139?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 140?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 141?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 142?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 143?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 144?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 145?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 146?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 147?[0m
+2020-05-14 21:55:36.377  INFO 15960 --- [       Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:36.381  INFO 15960 --- [       Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:36.384  INFO 15960 --- [       Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2020-05-14 21:55:36.643  INFO 15960 --- [       Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2020-05-14 21:55:36.694  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine on STI_Vice with PID 15960 (started by V_Iavorschi in D:\Projects\JAVA\Web Quiz Engine\Web Quiz Engine\task)
+2020-05-14 21:55:36.695  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
+2020-05-14 21:55:36.707  INFO 15960 --- [       Thread-9] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-14 21:55:36.711  INFO 15960 --- [       Thread-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-05-14 21:55:36.928  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-14 21:55:36.934  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6ms. Found 2 JPA repository interfaces.
+2020-05-14 21:55:36.976  INFO 15960 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-14 21:55:37.000  WARN 15960 --- [    Test worker] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2020-05-14 21:55:37.007  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2020-05-14 21:55:37.008  INFO 15960 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-14 21:55:37.008  INFO 15960 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-05-14 21:55:37.046  INFO 15960 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-14 21:55:37.047  INFO 15960 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 350 ms
+2020-05-14 21:55:37.076  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2020-05-14 21:55:37.083  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2020-05-14 21:55:37.083  INFO 15960 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../quizdb'
+2020-05-14 21:55:37.141  INFO 15960 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-14 21:55:37.146  INFO 15960 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-05-14 21:55:37.224  INFO 15960 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-14 21:55:37.224  INFO 15960 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:37.289  WARN 15960 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-14 21:55:37.312  INFO 15960 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2e89c440, org.springframework.security.web.context.SecurityContextPersistenceFilter@26e84b93, org.springframework.security.web.header.HeaderWriterFilter@713c633, org.springframework.security.web.authentication.logout.LogoutFilter@6886eed6, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2231690c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55d94c7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c66f801, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d0dbfbd, org.springframework.security.web.session.SessionManagementFilter@423a5352, org.springframework.security.web.access.ExceptionTranslationFilter@447ced44, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c624408]
+2020-05-14 21:55:37.353  INFO 15960 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:37.424  INFO 15960 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-05-14 21:55:37.440  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2020-05-14 21:55:37.441  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 0.761 seconds (JVM running for 20.623)
+?[1;31m
+Start test 148?[0m
+2020-05-14 21:55:37.447  INFO 15960 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 21:55:37.448  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-14 21:55:37.450  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 149?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 150?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 151?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 152?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select answer0_.question_id as question1_1_0_, answer0_.answer as answer2_1_0_ from question_answer answer0_ where answer0_.question_id=?
+?[1;31m
+Start test 153?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: delete from question_answer where question_id=?
+Hibernate: delete from question_options where question_id=?
+Hibernate: delete from question where id=?
+?[1;31m
+Start test 154?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 155?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 156?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 157?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 158?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 159?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 160?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 161?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+Hibernate: delete from question_answer where question_id=?
+Hibernate: delete from question_options where question_id=?
+Hibernate: delete from question where id=?
+?[1;31m
+Start test 162?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 163?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 164?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 165?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 166?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 167?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 168?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 169?[0m
+2020-05-14 21:55:39.671  INFO 15960 --- [      Thread-12] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:39.672  INFO 15960 --- [      Thread-12] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:39.675  INFO 15960 --- [      Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2020-05-14 21:55:39.828  INFO 15960 --- [      Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2020-05-14 21:55:39.886  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine on STI_Vice with PID 15960 (started by V_Iavorschi in D:\Projects\JAVA\Web Quiz Engine\Web Quiz Engine\task)
+2020-05-14 21:55:39.886  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
+2020-05-14 21:55:39.898  INFO 15960 --- [      Thread-12] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-14 21:55:39.904  INFO 15960 --- [      Thread-12] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-05-14 21:55:40.105  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-14 21:55:40.111  INFO 15960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6ms. Found 2 JPA repository interfaces.
+2020-05-14 21:55:40.151  INFO 15960 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-14 21:55:40.177  WARN 15960 --- [    Test worker] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2020-05-14 21:55:40.186  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2020-05-14 21:55:40.187  INFO 15960 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-14 21:55:40.187  INFO 15960 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-05-14 21:55:40.229  INFO 15960 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-14 21:55:40.229  INFO 15960 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 341 ms
+2020-05-14 21:55:40.261  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2020-05-14 21:55:40.269  INFO 15960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2020-05-14 21:55:40.269  INFO 15960 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../quizdb'
+2020-05-14 21:55:40.337  INFO 15960 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-14 21:55:40.344  INFO 15960 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-05-14 21:55:40.414  INFO 15960 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-14 21:55:40.414  INFO 15960 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-14 21:55:40.476  WARN 15960 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-14 21:55:40.500  INFO 15960 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53f2c341, org.springframework.security.web.context.SecurityContextPersistenceFilter@551b65bb, org.springframework.security.web.header.HeaderWriterFilter@6fa69cb7, org.springframework.security.web.authentication.logout.LogoutFilter@1b5525a2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7bf9f643, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a5e8874, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@61c6f8ac, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@631eecb8, org.springframework.security.web.session.SessionManagementFilter@6ee3578a, org.springframework.security.web.access.ExceptionTranslationFilter@75834521, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@334f4dfe]
+2020-05-14 21:55:40.541  INFO 15960 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 21:55:40.638  INFO 15960 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2020-05-14 21:55:40.657  INFO 15960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2020-05-14 21:55:40.657  INFO 15960 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 0.786 seconds (JVM running for 23.839)
+?[1;31m
+Start test 170?[0m
+2020-05-14 21:55:40.662  INFO 15960 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 21:55:40.662  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-14 21:55:40.664  INFO 15960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_, question0_.text as text2_0_, question0_.title as title3_0_, question0_.user_id as user_id4_0_ from question question0_
+Hibernate: select user0_.id as id1_3_0_, user0_.active as active2_3_0_, user0_.email as email3_3_0_, user0_.password as password4_3_0_ from user user0_ where user0_.id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+Hibernate: select options0_.question_id as question1_2_0_, options0_.options as options2_2_0_ from question_options options0_ where options0_.question_id=?
+?[1;31m
+Start test 171?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 172?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 173?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+?[1;31m
+Start test 174?[0m
+Hibernate: select user0_.id as id1_3_, user0_.active as active2_3_, user0_.email as email3_3_, user0_.password as password4_3_ from user user0_ where user0_.email=?
+Hibernate: select question0_.id as id1_0_0_, question0_.text as text2_0_0_, question0_.title as title3_0_0_, question0_.user_id as user_id4_0_0_, user1_.id as id1_3_1_, user1_.active as active2_3_1_, user1_.email as email3_3_1_, user1_.password as password4_3_1_ from question question0_ left outer join user user1_ on question0_.user_id=user1_.id where question0_.id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
