@@ -6,10 +6,10 @@
 
 <ul>
 	<li><strong>register a new user</strong>, which accepts an email as the login and a password;</li>
-	<li><strong>deleting a question</strong> created by the current user.</li>
+	<li><strong>deleting a quiz</strong> created by the current user.</li>
 </ul>
 
-<p>All the previously developed operations should not be changed. As before, when creating a new question, the service checks the following rules: the fields <code class="java">title</code> and <code class="java">text</code> exist and they are not empty, and the <code class="java">options</code> array has two or more items. If at least one of these conditions is not satisfied, the service returns the <code class="java">400 (Bad request)</code> status code. As before, server responses for getting quizzes should not include answers for the quizzes.</p>
+<p>All the previously developed operations should not be changed. As before, when creating a new quiz, the service checks the following rules: the fields <code class="java">title</code> and <code class="java">text</code> exist and they are not empty, and the <code class="java">options</code> array has two or more items. If at least one of these conditions is not satisfied, the service returns the <code class="java">400 (Bad request)</code> status code. As before, server responses for getting quizzes should not include answers for the quizzes.</p>
 
 <p><div class="alert alert-warning">For the testing reasons, make <code class="java">POST /actuator/shutdown</code> endpoint accessible without authentication.</div></p>
 
@@ -50,13 +50,13 @@
 
 <p>All the following operations need a registered user to be successfully completed.</p>
 
-<h2>Delete a question</h2>
+<h2>Delete a quiz</h2>
 
-<p>A user can delete their question by sending the <code class="java">DELETE</code> request to <code class="java">/api/quizzes/{id}</code>.</p>
+<p>A user can delete their quiz by sending the <code class="java">DELETE</code> request to <code class="java">/api/quizzes/{id}</code>.</p>
 
 <p>If the operation was successful, the service returns the <code class="java">204 (No content)</code> status code without any content.</p>
 
-<p>If the specified question does not exist, the server returns <code class="java">404 (Not found)</code>. If the specified user is not the author of this question, the response is the <code class="java">403 (Forbidden)</code> status code.</p>
+<p>If the specified quiz does not exist, the server returns <code class="java">404 (Not found)</code>. If the specified user is not the author of this quiz, the response is the <code class="java">403 (Forbidden)</code> status code.</p>
 
 <h2>Additional ideas</h2>
 
