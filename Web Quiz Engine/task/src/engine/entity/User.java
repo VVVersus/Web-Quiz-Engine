@@ -2,7 +2,6 @@ package engine.entity;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -26,11 +25,12 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "authority")
-    private String authority = "USER";
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = Collections.singleton(Role.USER);
 
-    @Column(name = "enabled")
-    private boolean enabled = true;
+    private boolean active = true;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Question> questions = new ArrayList<>();
@@ -56,7 +56,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        return getRoles();
     }
 
     public String getPassword() {
@@ -85,7 +85,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return isActive();
     }
 
     public void setPassword(String password) {
@@ -100,15 +100,19 @@ public class User implements UserDetails {
         this.questions = questions;
     }
 
-    public String getAuthority() {
-        return authority;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

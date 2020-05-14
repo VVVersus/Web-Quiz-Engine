@@ -29,14 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.httpBasic().and()
                 .authorizeRequests()
                     .antMatchers("/api/register", "/actuator/shutdown").permitAll()
-                    .anyRequest().hasRole("USER")
+                    .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .and()
-                .httpBasic();
+                .csrf().disable();
     }
 
     /*@Override
@@ -48,10 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled"
+                .usersByUsernameQuery("select username, password, active"
                         + " from users where username=?")
-                .authoritiesByUsernameQuery("select username, authority "
-                        + "from users where username=?")
+                .authoritiesByUsernameQuery("select u.username, r.roles "
+                        + "from users u left join user_role r on r.user_id=u.user_id where username=?")
                 .passwordEncoder(new BCryptPasswordEncoder(8));
     }
 

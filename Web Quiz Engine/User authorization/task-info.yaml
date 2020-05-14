@@ -1661,6 +1661,9 @@ files:
 - name: src/engine/service/QuestionService.java
   visible: true
   learner_created: true
+- name: src/engine/entity/Role.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/508/implement
 status: Failed
 record: -1
