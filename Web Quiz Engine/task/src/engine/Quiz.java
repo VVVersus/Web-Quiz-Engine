@@ -1,6 +1,11 @@
 package engine;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,9 +30,16 @@ public class Quiz {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private CompletionRepo completionRepo;
+
     @GetMapping(path = "/quizzes")
-    public List<Question> getAllQuestions() {
-        return questionRepo.findAll();
+    public ResponseEntity<Page<Question>> getAllQuestions(@RequestParam(defaultValue = "0") Integer page,
+                                                          @RequestParam(defaultValue = "10") Integer pageSize,
+                                                          @RequestParam(defaultValue = "id") String sortBy) {
+        Pageable paging = PageRequest.of(page, pageSize, Sort.by(sortBy));
+
+        return new ResponseEntity<Page<Question>>(questionRepo.findAll(paging), new HttpHeaders(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/quizzes")
@@ -34,6 +47,16 @@ public class Quiz {
                                 @AuthenticationPrincipal User user) {
         question.setUser(user);
         return questionRepo.save(question);
+    }
+
+    @GetMapping(path = "/quizzes/completed")
+    public ResponseEntity<Page<Completion>> getCompletedQuestions(@AuthenticationPrincipal User user,
+                                                                @RequestParam(defaultValue = "0") Integer page,
+                                                                @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        Pageable paging = PageRequest.of(page, pageSize);
+
+        return new ResponseEntity<Page<Completion>>(completionRepo.findAllByUserId(user.getId(), paging), new HttpHeaders(), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/quizzes/{id}")
@@ -53,10 +76,14 @@ public class Quiz {
     }
 
     @PostMapping(path = "/quizzes/{id}/solve")
-    public Answer checkAnswer(@RequestBody Guess guess, @PathVariable(name = "id") Long id) {
+    public Answer checkAnswer(@AuthenticationPrincipal User user,
+                              @RequestBody Guess guess,
+                              @PathVariable(name = "id") Long id) {
         Question question = questionRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         if (question.checkAnswer(guess)) {
+            Completion completion = new Completion(id, user.getId());
+            completionRepo.save(completion);
             return Answer.CORRECT_ANSWER;
         } else {
             return Answer.WRONG_ANSWER;
